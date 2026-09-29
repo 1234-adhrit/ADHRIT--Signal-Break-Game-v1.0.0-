@@ -81,3 +81,7 @@ docs/media/   README screenshots and animated walkthrough
 ## Media
 
 The README preview uses screenshots captured from the running game. `docs/media/walkthrough.gif` is an animated sequence of the lobby, challenge screens, spectator view, and run completion.
+
+# Play Online
+
+- https://adhrit-signal-break-game-v1-0-0.onrender.com
