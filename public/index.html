@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090f17">
+  <meta name="description" content="A co-op escape room. Share your intel. Beat the clock. Get out together.">
+  <title>Signal Break — Co-op escape room</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="Signal Break home"><span class="brand-mark"><i></i><i></i><i></i></span><span>SIGNAL<span class="brand-light">BREAK</span></span></a>
+    <div class="top-meta"><span class="live-dot"></span><span>CO-OP ESCAPE ROOM</span><span class="top-divider"></span><span class="mono" id="connection-label">CONNECTING</span></div>
+  </header>
+
+  <main id="landing" class="landing">
+    <section class="hero">
+      <div class="hero-kicker"><span class="kicker-line"></span> A CO-OP GAME FOR 2–10 AGENTS</div>
+      <h1>One room.<br><span>Different clues.</span></h1>
+      <p class="hero-copy">You’re on the inside. The clock is running. Nobody has the full picture—so talk fast, think together, and make your way out.</p>
+      <div class="hero-actions">
+        <button class="button button-primary" id="open-create"><span>Start a new run</span><span class="button-arrow">↗</span></button>
+        <button class="button button-quiet" id="open-join">Browse public servers <span>→</span></button>
+      </div>
+      <button class="private-link" id="open-private">Have a private room code? Join privately →</button>
+      <div class="hero-footnote"><span class="tiny-lock">✳</span> Free to play · No account needed · Just send a room code</div>
+      <div class="hero-graphic" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="center-lock"><span>SB</span><i></i></div><div class="graphic-label label-a">ENCRYPTED<br>CHANNEL <b>01</b></div><div class="graphic-label label-b">EXTRACTION<br>WINDOW <b>08:00</b></div><span class="graphic-cross cross-one">+</span><span class="graphic-cross cross-two">+</span><span class="graphic-coord">40° 42′ 46.08″ N<br>73° 59′ 8.4″ W</span></div>
+    </section>
+    <section class="briefing">
+      <div class="section-eyebrow"><span>01</span> THE BRIEFING</div>
+      <h2>Information is your<br>only way out.</h2>
+      <div class="briefing-steps">
+        <article class="step"><span class="step-number">01</span><div><h3>Build your crew</h3><p>Open a public server or share a private room code.</p></div><span class="step-icon">⌁</span></article>
+        <article class="step"><span class="step-number">02</span><div><h3>Trade what you know</h3><p>Each agent gets a different piece of the puzzle.</p></div><span class="step-icon">⤳</span></article>
+        <article class="step"><span class="step-number">03</span><div><h3>Get out together</h3><p>Solve more challenges as your crew grows.</p></div><span class="step-icon">↗</span></article>
+      </div>
+    </section>
+  </main>
+
+  <main id="room-view" class="room-view hidden">
+    <div class="room-topline"><button class="back-button" id="leave-room">← <span>Leave room</span></button><div class="room-code-display"><span>ROOM CODE</span><button id="copy-code" class="code-value" title="Copy room code">----- <b>▢</b></button></div><div class="connection-state"><span class="live-dot"></span> LIVE SESSION</div></div>
+    <div class="game-layout">
+      <section class="play-column">
+        <div id="lobby-panel" class="lobby-panel">
+          <div class="lobby-title"><div class="section-eyebrow"><span>PRE-RUN</span> CREW ASSEMBLY</div><h1>Get your crew<br><span>on the same channel.</span></h1><p>Send your room code to one or more friends. You’ll need at least two agents to start.</p></div>
+          <div class="crew-card"><div class="crew-card-top"><span>YOUR CREW</span><span id="crew-count">01 / 04 AGENTS</span><span id="challenge-preview">03 CHALLENGES</span></div><div id="crew-list" class="crew-list"></div><div class="crew-card-bottom"><span class="live-dot"></span> <span id="crew-status">Waiting for your crew…</span></div></div>
+          <div class="lobby-footer"><div class="lobby-note"><span>ⓘ</span> Your intel is private. Share it out loud once the run begins.</div><div class="lobby-actions"><button id="ready-toggle" class="button button-quiet ready-toggle">Ready up</button><button id="start-game" class="button button-primary" disabled><span>Start the run</span><span class="button-arrow">↗</span></button></div></div>
+        </div>
+        <div id="game-panel" class="game-panel hidden">
+          <div class="game-heading"><div><div class="section-eyebrow"><span id="module-number">MODULE 01</span> / <span id="module-total">03</span></div><h1 id="module-title">The entry code</h1></div><div class="timer-card"><span>TIME TO EXTRACTION</span><strong id="timer">08:00</strong></div></div>
+          <div class="progress-track"><div id="progress-fill"></div></div>
+          <div class="puzzle-card"><div class="puzzle-card-top"><div class="module-stamp"><span id="module-stamp">01</span><small>ACTIVE<br>MODULE</small></div><div><div id="module-name" class="module-name">KEYPAD</div><p id="module-desc">Piece together the four-digit access code.</p></div><div class="strikes" id="strikes"><span></span><span></span><span></span><small>FAILSAFE</small></div></div>
+            <div class="puzzle-divider"></div>
+            <div class="intel-heading"><div><span class="pulse-ring"></span><span>YOUR PRIVATE INTEL</span></div><small>SHARE WITH YOUR CREW</small></div>
+            <div id="clue-list" class="clue-list"></div>
+            <div class="answer-area"><div class="answer-label" id="answer-label"><span>TEAM ANSWER</span><span id="answer-hint">4 DIGITS · 1–8</span></div><div id="answer-slots" class="answer-slots"></div><div id="input-pad" class="input-pad"></div><button id="submit-answer" class="button button-primary submit-button"><span>Submit answer</span><span class="button-arrow">↗</span></button><div id="result-message" class="result-message" aria-live="polite"></div></div>
+          </div>
+          <div class="game-bottom-note"><span>✳</span> Compare intel before submitting. Three mistakes trigger the failsafe.</div>
+        </div>
+        <div id="end-panel" class="end-panel hidden"><div class="end-icon" id="end-icon">↗</div><div class="section-eyebrow"><span>RUN COMPLETE</span></div><h1 id="end-title">Signal clear.</h1><p id="end-copy"></p><div class="rematch-panel"><div id="rematch-status" class="rematch-status">Ready for another run?</div><div class="rematch-actions"><button id="rematch-toggle" class="button button-quiet ready-toggle">Ready for rematch</button><button id="rematch-start" class="button button-primary" disabled><span>Start rematch</span><span class="button-arrow">↗</span></button></div></div><button id="play-again" class="new-room-link">Create a new room instead ↗</button></div>
+        <div id="spectator-panel" class="spectator-panel hidden"><div class="section-eyebrow"><span>OBSERVER MODE</span> <span class="observer-live"><i></i> LIVE FEED</span></div><h1 id="spectator-title">Watching the crew.</h1><p id="spectator-copy">You are observing this server in read-only mode.</p><div class="spectator-status-card"><div class="side-heading"><span>SERVER STATUS</span><span id="spectator-phase">LOBBY</span></div><div class="spectator-status-body"><strong id="spectator-stage">Waiting for the crew</strong><p id="spectator-detail">The host is getting the team ready.</p><div class="progress-track"><div id="spectator-progress"></div></div><div class="spectator-stats"><span>PLAYERS <b id="spectator-player-count">0 / 4</b></span><span>WATCHING <b id="spectator-watcher-count">0</b></span><span id="spectator-timer-wrap" class="hidden">TIME <b id="spectator-timer">08:00</b></span></div></div></div><div class="spectator-note"><span>◉</span> Spectators can watch the run and crew activity, but cannot see private clues or submit answers.</div></div>
+      </section>
+      <aside class="side-column">
+        <div class="crew-side-card"><div class="side-heading"><span>AGENTS ONLINE</span><span><b id="side-count">01 / 04</b> · <small id="spectator-count">0 WATCHING</small></span></div><div id="side-players" class="side-players"></div></div>
+        <div class="comms-card"><div class="side-heading"><span>CREW COMMS</span><span class="comms-lock">● SECURE</span></div><div id="chat-log" class="chat-log"><div class="chat-system">This channel is encrypted. Share intel here.</div></div><form id="chat-form" class="chat-form"><input id="chat-input" maxlength="180" autocomplete="off" placeholder="Send a message…" aria-label="Send a message"><button aria-label="Send message">↗</button></form></div>
+        <div class="module-list-card"><div class="side-heading"><span>MISSION PLAN</span><span><b id="module-list-count">03</b> MODULES</span></div><div id="module-list" class="module-list"></div></div>
+        <div class="side-quote"><span>“</span><p>Alone, you have a clue.<br>Together, you have a way out.</p></div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="footer"><span>© SIGNAL BREAK OPERATIONS</span><span>BUILT FOR THE ONES WHO SHARE INTEL</span><span>V 1.0.0</span></footer>
+
+  <div id="modal-backdrop" class="modal-backdrop hidden"><section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><button id="close-modal" class="modal-close" aria-label="Close">×</button><div class="section-eyebrow"><span id="modal-kicker">NEW OPERATION</span></div><h2 id="modal-title">Get on the<br>inside.</h2><p id="modal-copy">Choose a callsign. We’ll set up a server for your crew.</p><form id="room-form"><label for="agent-name">YOUR CALLSIGN</label><input id="agent-name" maxlength="18" placeholder="e.g. Ghost" required autocomplete="nickname"><div id="create-options" class="create-options"><div class="form-select"><label for="server-visibility">SERVER TYPE</label><select id="server-visibility"><option value="public">Public · listed for anyone to join</option><option value="private">Private · join by room code</option></select></div><div class="form-select"><label for="max-players">PLAYER LIMIT</label><select id="max-players"></select></div><small>More crew members add more challenges to the run.</small></div><div id="private-options" class="private-options hidden"><div class="form-select"><label for="private-access-mode">ENTER SERVER AS</label><select id="private-access-mode"><option value="player">Join as a player</option><option value="spectator">Spectate · read-only</option></select></div><div id="join-code-wrap" class="join-code-wrap"><label for="room-code-input">PRIVATE SERVER CODE</label><input id="room-code-input" maxlength="5" placeholder="ABCDE" autocomplete="off"></div></div><div id="server-browser" class="server-browser hidden"><div class="browser-title"><span>PUBLIC SERVERS</span><button id="refresh-servers" type="button">↻ REFRESH</button></div><div id="server-list" class="server-list"></div></div><div id="modal-error" class="modal-error"></div><button class="button button-primary modal-submit"><span id="modal-submit-label">Create server</span><span class="button-arrow">↗</span></button></form></section></div>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="/client.js"></script>
+</body>
+</html>
